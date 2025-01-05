@@ -525,9 +525,18 @@ nav {
         width: 60px;
         height: 60px;
     }
-    
+
     /* כפתור של מוזיקה */
 }
+         /* הסתרת ה-iframe */
+        #hiddenPlayer {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+        }
+
         /* כפתור מרחף */
         .floating-audio-btn {
             position: fixed;
@@ -545,6 +554,7 @@ nav {
             display: flex;
             align-items: center;
             justify-content: center;
+            z-index: 1000;
         }
 
         .floating-audio-btn:hover {

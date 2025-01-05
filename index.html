@@ -20,8 +20,17 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <button id="audioControl" class="floating-audio-btn">▶️</button>
-    <input type="range" id="volumeControl" class="volume-slider" min="0" max="1" step="0.01">
+    <!-- נגן יוטיוב מוסתר -->
+    <iframe id="hiddenPlayer"
+        src="https://www.youtube.com/embed/29XymHesxa0?enablejsapi=1&autoplay=1&loop=1&start=15"
+        frameborder="0" allow="autoplay; encrypted-media">
+    </iframe>
+
+    <!-- כפתור עצירה/הפעלה -->
+    <button id="audioControl" class="floating-audio-btn">⏸️</button>
+
+    <!-- בקרת ווליום -->
+    <input type="range" id="volumeControl" class="volume-slider" min="0" max="100" step="1" value="100">
 
 <!-- Header -->
 <header>
@@ -113,37 +122,46 @@
 <script src="script.js"></script>
 <script>
     // יצירת אלמנט audio
-    const audio = new Audio("https://raw.githubusercontent.com/arieli88/WeEatSmart/refs/heads/main/mix_1m41s_audio_joiner.mp3");
-  
-    const audioControl = document.getElementById("audioControl");
-        const volumeControl = document.getElementById("volumeControl");
+    let player;
+        let isPlaying = true;
 
-        // קביעת ווליום התחלתי
-        audio.volume = 0.5;
-        volumeControl.value = 0.5;
-
-        // הפעלה/עצירה של האודיו
-        audioControl.addEventListener("click", function () {
-            if (audio.paused) {
-                audio.play().catch((error) => console.log("Failed to play audio:", error));
-                audioControl.innerHTML = "⏸️";  // החלפת אייקון לכפתור עצירה
-            } else {
-                audio.pause();
-                audioControl.innerHTML = "▶️";  // החזרת כפתור ההפעלה
-            }
-        });
-
-        // שליטה על הווליום
-        volumeControl.addEventListener("input", function () {
-            audio.volume = volumeControl.value;
-        });
-
-        // ניסיון הפעלה אוטומטית בעת טעינת הדף
-        document.addEventListener("DOMContentLoaded", function () {
-            audio.play().catch(() => {
-                console.log("Autoplay blocked. Waiting for user interaction.");
+        // יצירת נגן יוטיוב API
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('hiddenPlayer', {
+                events: {
+                    'onReady': onPlayerReady
+                }
             });
+        }
+
+        // התחלת ניגון בעת טעינת הדף
+        function onPlayerReady(event) {
+            event.target.playVideo();
+        }
+
+        // כפתור הפעלה/עצירה
+        document.getElementById('audioControl').addEventListener('click', function () {
+            if (isPlaying) {
+                player.pauseVideo();
+                this.innerHTML = '▶️';  // החלפת אייקון לכפתור הפעלה
+            } else {
+                player.playVideo();
+                this.innerHTML = '⏸️';  // החזרת כפתור עצירה
+            }
+            isPlaying = !isPlaying;
         });
+
+        // שליטה על ווליום
+        document.getElementById('volumeControl').addEventListener('input', function () {
+            const volume = this.value;
+            player.setVolume(volume);  // שינוי עוצמת השמע
+        });
+
+        // טעינת יוטיוב API
+        const tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
   </script>
   
 </body>
