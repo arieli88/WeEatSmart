@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WeEatSmart - תזונה חכמה</title>
+  <link rel="preconnect" href="https://images.unsplash.com">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <!-- Slick Carousel CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="header-container">
+    <img src="https://weeatsmart.co/wp-content/uploads/2023/03/%D7%A2%D7%99%D7%A6%D7%95%D7%91-%D7%9C%D7%9C%D7%90-%D7%A9%D7%9D.png" alt="WeEatSmart Logo" class="header-logo">
+    <!-- <div class="logo">WeEatSmart</div> -->
+  </div>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <nav>
+    <ul>
+      <li><a href="#home">בית</a></li>
+      <li><a href="#features">היתרונות</a></li>
+      <li><a href="#carousel">קרוסלה</a></li>
+      <li><a href="catalog.html">קטלוג</a></li>
+      <li><a href="#footer">צור קשר</a></li>
+    </ul>
+</header>
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+  <h1>ברוכים הבאים ל-WeEatSmart</h1>
+  <p>המקום בו כל מוצר נבחר בקפידה עבורכם.</p>
+</section>
+
+<!-- Carousel Section -->
+<section id="carousel">
+    <div class="carousel-container">
+      <div class="carousel lazy"></div>
+    </div>
+  </section>
+
+<!-- Popup Overlay -->
+<div id="popup-overlay" class="popup-overlay">
+    <div class="popup" style="direction: ltr;">
+        <button class="popup-close" onclick="closePopup()">X</button>
+
+        <div class="popup-left">
+            <img id="popup-main-img" src="" alt="תמונת מוצר" class="popup-main-img">
+            <div class="thumbnails" id="popup-extra-photos">
+                <!-- תמונות נוספות מתווספות כאן דרך JS -->
+            </div>
+        </div>
+
+        <div class="popup-right">
+            <h3 id="popup-title" class="popup-product-name"></h3>
+            <p id="popup-description" class="popup-description"></p>
+            <p id="popup-price" class="popup-price"></p>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Features Section -->
+<section id="features">
+  <h2>היתרונות שלנו</h2>
+  <div class="features">
+    <div class="feature">
+      <i class="fas fa-leaf"></i>
+      <h3>100% טבעי</h3>
+      <p>המוצרים שלנו עשויים מחומרים טבעיים בלבד.</p>
+    </div>
+    <div class="feature">
+      <i class="fas fa-list-ul"></i>
+      <h3>מותאם אישית</h3>
+      <p><a href="https://weeatsmart.co.il/catalog" target="_blank">קטלוג המוצרים שלנו</a> מחכה לך!</p>
+    </div>
+    <div class="feature">
+      <i class="fas fa-chart-line"></i>
+      <h3>תוצאות מוכחות</h3>
+      <p>קרא עוד בכתבה ב- <a href="https://www.ynet.co.il/menta/article/h1turewpy" target="_blank">Ynet</a> על מחקרים שמראים את ההשפעה החיובית שלנו.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer id="footer">
+  <p>&copy; 2025 WeEatSmart - כל הזכויות שמורות.</p>
+</footer>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Slick Carousel JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+<!-- Custom JS -->
+<script src="products.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
