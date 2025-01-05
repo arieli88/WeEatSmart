@@ -11,7 +11,11 @@ a {
     text-decoration: none;
     color: inherit;
 }
-
+#features p > a {
+    color: blue; /* צבע ברירת המחדל של קישורים */
+    text-decoration: underline; /* קו תחתון */
+    cursor: pointer; /* הסמן ישתנה ליד */
+}
 ul {
     list-style: none;
     margin: 0;
